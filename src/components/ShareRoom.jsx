@@ -4,11 +4,15 @@ import { QRCodeSVG } from 'qrcode.react'
 /**
  * ShareRoom — Shows a QR code + copy-link button for the current room.
  */
+const PROD_URL = 'https://secret-carmen.vercel.app'
+
 export default function ShareRoom({ roomId }) {
   const [copied, setCopied] = useState(false)
   const [showQR, setShowQR] = useState(false)
 
-  const roomUrl = `${window.location.origin}${window.location.pathname}?room=${roomId}`
+  // En producción usa el dominio de Vercel, en local usa localhost
+  const baseUrl = import.meta.env.PROD ? PROD_URL : window.location.origin
+  const roomUrl = `${baseUrl}/?room=${roomId}`
 
   const handleCopy = useCallback(async () => {
     try {
