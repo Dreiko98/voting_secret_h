@@ -1,31 +1,55 @@
 @import "tailwindcss";
 
+/* ===== Secret Hitler / Carmen theme ===== */
+
+/* SH Palette:
+   bg-dark:    #1a1008
+   bg-card:    #2a1f10
+   orange:     #d35400 / #e67e22
+   red:        #c0392b / #e74c3c
+   cream:      #f5e6c8
+   gold:       #f39c12
+   dark-brown: #3d2b1f
+*/
+
 /* ===== Custom animations ===== */
 @keyframes vote-pop {
   0% { transform: scale(1); }
-  30% { transform: scale(0.92); }
-  60% { transform: scale(1.08); }
+  30% { transform: scale(0.88); }
+  60% { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
-  50%      { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+  0%, 100% { box-shadow: 0 0 15px rgba(211, 84, 0, 0.3); }
+  50%      { box-shadow: 0 0 35px rgba(211, 84, 0, 0.7); }
 }
 
-@keyframes confetti-fall {
-  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100px) rotate(720deg); opacity: 0; }
+@keyframes stamp {
+  0%   { transform: scale(3) rotate(-15deg); opacity: 0; }
+  60%  { transform: scale(1) rotate(-5deg); opacity: 1; }
+  80%  { transform: scale(1.05) rotate(-3deg); }
+  100% { transform: scale(1) rotate(-2deg); opacity: 1; }
 }
 
 @keyframes check-draw {
   0%   { stroke-dashoffset: 50; }
   100% { stroke-dashoffset: 0; }
+}
+
+@keyframes skull-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-6px) rotate(3deg); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
 }
 
 /* Utility classes */
@@ -39,10 +63,19 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
-  .animate-confetti {
-    animation: confetti-fall 1s ease-out forwards;
+  .animate-stamp {
+    animation: stamp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .animate-check {
     animation: check-draw 0.5s ease-out forwards;
+  }
+  .animate-skull {
+    animation: skull-float 3s ease-in-out infinite;
+  }
+  .font-oswald {
+    font-family: 'Oswald', sans-serif;
+  }
+  .font-typewriter {
+    font-family: 'Special Elite', cursive;
   }
 }

@@ -30,46 +30,52 @@ export default function ShareRoom({ roomId }) {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      {/* Room badge */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-slate-800/80 rounded-full border border-slate-700">
-        <span className="text-xs text-slate-500 uppercase tracking-wider">Sala</span>
-        <code className="text-indigo-400 font-mono font-bold text-sm">{roomId}</code>
+      {/* Room badge — styled as classified document */}
+      <div className="flex items-center gap-2 px-4 py-2 bg-[#2a1f10] rounded border border-[#5a3e2a]/50">
+        <span className="font-typewriter text-xs text-[#5a3e2a] uppercase">Mesa</span>
+        <code className="font-oswald text-[#d35400] font-bold text-sm uppercase">{roomId}</code>
+        <span className="font-typewriter text-xs text-[#5a3e2a]">🔒</span>
       </div>
 
       {/* Action buttons */}
       <div className="flex gap-3">
         <button
           onClick={handleCopy}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl
-                     bg-indigo-600 hover:bg-indigo-500
-                     text-white text-sm font-medium
+          className="flex items-center gap-2 px-4 py-2 rounded-lg
+                     bg-[#d35400] hover:bg-[#e67e22]
+                     text-[#f5e6c8] text-sm font-oswald font-semibold uppercase
                      transition-colors cursor-pointer"
         >
-          {copied ? '✅ ¡Copiado!' : '🔗 Copiar enlace'}
+          {copied ? '✅ ¡Copiado!' : '📨 Invitar jugador'}
         </button>
 
         <button
           onClick={() => setShowQR((s) => !s)}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl
-                     bg-slate-800 hover:bg-slate-700 border border-slate-700
-                     text-slate-300 text-sm font-medium
+          className="flex items-center gap-2 px-4 py-2 rounded-lg
+                     bg-[#2a1f10] hover:bg-[#3d2b1f] border border-[#5a3e2a]/50
+                     text-[#c8a96e] text-sm font-oswald uppercase
                      transition-colors cursor-pointer"
         >
-          {showQR ? '✕ Cerrar' : '📱 QR'}
+          {showQR ? '✕ Cerrar' : '🔍 QR Secreto'}
         </button>
       </div>
 
-      {/* QR code */}
+      {/* QR code — styled as secret document */}
       {showQR && (
-        <div className="p-4 bg-white rounded-2xl shadow-xl animate-fade-in-up">
-          <QRCodeSVG
-            value={roomUrl}
-            size={200}
-            bgColor="#ffffff"
-            fgColor="#0f172a"
-            level="M"
-            includeMargin={false}
-          />
+        <div className="flex flex-col items-center gap-2 animate-fade-in-up">
+          <div className="p-4 bg-[#f5e6c8] rounded-lg shadow-xl border-2 border-[#3d2b1f]">
+            <QRCodeSVG
+              value={roomUrl}
+              size={200}
+              bgColor="#f5e6c8"
+              fgColor="#1a1008"
+              level="M"
+              includeMargin={false}
+            />
+          </div>
+          <p className="font-typewriter text-[10px] text-[#5a3e2a]">
+            🤫 Carmen dice: "Comparte esto solo con los de confianza"
+          </p>
         </div>
       )}
     </div>

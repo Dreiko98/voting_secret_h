@@ -52,9 +52,9 @@ export default function ResetButton({ onReset }) {
       onTouchStart={handleStart}
       onTouchEnd={handleEnd}
       disabled={resetting}
-      className="relative flex items-center gap-2 px-5 py-2.5 rounded-xl
-                 bg-slate-800 hover:bg-slate-700 border border-slate-700
-                 text-slate-400 text-sm font-medium
+      className="relative flex items-center gap-2 px-5 py-2.5 rounded-lg
+                 bg-[#2a1f10] hover:bg-[#3d2b1f] border border-[#5a3e2a]/50
+                 text-[#c8a96e] text-sm font-typewriter
                  transition-colors cursor-pointer select-none
                  disabled:opacity-50 disabled:cursor-not-allowed"
     >
@@ -66,7 +66,7 @@ export default function ResetButton({ onReset }) {
             cy="20"
             r="18"
             fill="none"
-            stroke="#ef4444"
+            stroke="#c0392b"
             strokeWidth="3"
             strokeDasharray={circumference}
             strokeDashoffset={circumference * (1 - progress)}
@@ -77,8 +77,8 @@ export default function ResetButton({ onReset }) {
         </svg>
       )}
 
-      <span className="text-base">🗑️</span>
-      <span>{resetting ? 'Reseteando…' : 'Mantener para resetear'}</span>
+      <span className="text-base">🔥</span>
+      <span>{resetting ? 'Carmen está borrando pruebas…' : 'Mantener para nueva ronda'}</span>
     </button>
   )
 }

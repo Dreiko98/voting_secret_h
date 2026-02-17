@@ -69,43 +69,32 @@ export default function VoteButtons({ roomId, onVote, resetSignal }) {
     [hasVoted, hasVotedKey, onVote]
   )
 
-  // After voting: success state
+  // After voting: stamp effect
   if (hasVoted) {
     return (
-      <div className="flex flex-col items-center gap-6 animate-fade-in-up">
-        {/* Animated checkmark */}
-        <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center">
-          <svg
-            className="w-12 h-12 text-emerald-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={3}
-          >
-            <path
-              className="animate-check"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-              style={{ strokeDasharray: 50, strokeDashoffset: 50 }}
-            />
-          </svg>
+      <div className="flex flex-col items-center gap-5 animate-fade-in-up">
+        {/* Stamp effect */}
+        <div className="animate-stamp">
+          <div className={`
+            w-28 h-28 rounded-full border-4 flex items-center justify-center
+            font-oswald text-2xl font-bold uppercase
+            ${votedChoice === 'yes'
+              ? 'border-[#27ae60] text-[#27ae60] shadow-[0_0_20px_rgba(39,174,96,0.3)]'
+              : 'border-[#c0392b] text-[#c0392b] shadow-[0_0_20px_rgba(192,57,43,0.3)]'
+            }
+          `}>
+            {votedChoice === 'yes' ? 'JA!' : 'NEIN!'}
+          </div>
         </div>
 
-        <p className="text-xl text-slate-300 font-medium">
-          Votaste{' '}
-          <span
-            className={
-              votedChoice === 'yes'
-                ? 'text-emerald-400 font-bold'
-                : 'text-rose-400 font-bold'
-            }
-          >
-            {votedChoice === 'yes' ? 'SÍ ✓' : 'NO ✗'}
+        <p className="font-oswald text-xl text-[#f5e6c8] uppercase tracking-wide">
+          Has votado{' '}
+          <span className={votedChoice === 'yes' ? 'text-[#27ae60]' : 'text-[#c0392b]'}>
+            {votedChoice === 'yes' ? 'JA! ✓' : 'NEIN! ✗'}
           </span>
         </p>
-        <p className="text-sm text-slate-500">
-          Tu voto ha sido registrado de forma anónima
+        <p className="font-typewriter text-xs text-[#5a3e2a] text-center">
+          📨 Sobre sellado y entregado a Carmen · Voto anónimo
         </p>
       </div>
     )
@@ -113,46 +102,52 @@ export default function VoteButtons({ roomId, onVote, resetSignal }) {
 
   // Voting state
   return (
-    <div className="flex flex-col items-center gap-6">
-      <p className="text-lg text-slate-400 font-medium tracking-wide">
-        Elige tu voto
+    <div className="flex flex-col items-center gap-5">
+      <p className="font-typewriter text-[#c8a96e] text-sm tracking-wide">
+        🗳️ La Presidenta Carmen exige tu voto
       </p>
 
-      <div className="flex gap-6 w-full max-w-md">
-        {/* YES */}
+      <div className="flex gap-5 w-full max-w-md">
+        {/* JA! */}
         <button
           onClick={() => handleVote(true)}
           disabled={animating}
           className={`
-            flex-1 py-8 rounded-2xl text-3xl font-black
-            bg-emerald-600 hover:bg-emerald-500 active:scale-95
-            border-2 border-emerald-400/30
-            shadow-lg shadow-emerald-900/40
+            flex-1 py-8 rounded-lg text-3xl font-oswald font-bold uppercase
+            bg-[#1a472a] hover:bg-[#27ae60] active:scale-95
+            border-2 border-[#27ae60]/50
+            shadow-lg shadow-[#1a472a]/60
+            text-[#f5e6c8] hover:text-white
             transition-all duration-200 cursor-pointer
             disabled:opacity-60 disabled:cursor-not-allowed
             ${animating ? 'animate-vote-pop' : ''}
           `}
         >
-          👍 SÍ
+          🕊️ JA!
         </button>
 
-        {/* NO */}
+        {/* NEIN! */}
         <button
           onClick={() => handleVote(false)}
           disabled={animating}
           className={`
-            flex-1 py-8 rounded-2xl text-3xl font-black
-            bg-rose-600 hover:bg-rose-500 active:scale-95
-            border-2 border-rose-400/30
-            shadow-lg shadow-rose-900/40
+            flex-1 py-8 rounded-lg text-3xl font-oswald font-bold uppercase
+            bg-[#4a1a1a] hover:bg-[#c0392b] active:scale-95
+            border-2 border-[#c0392b]/50
+            shadow-lg shadow-[#4a1a1a]/60
+            text-[#f5e6c8] hover:text-white
             transition-all duration-200 cursor-pointer
             disabled:opacity-60 disabled:cursor-not-allowed
             ${animating ? 'animate-vote-pop' : ''}
           `}
         >
-          👎 NO
+          💀 NEIN!
         </button>
       </div>
+
+      <p className="font-typewriter text-[10px] text-[#3d2b1f] text-center">
+        ⚠️ Carmen sabrá si no votas. Carmen siempre sabe.
+      </p>
     </div>
   )
 }
